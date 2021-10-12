@@ -23,7 +23,7 @@
       {{ $t('panel.express-checkout.title') }}
     </template>
 
-    <b-card-body>
+    <b-card-body v-if="expressCheckoutCanBeEnabled">
       <b-col sm="12" md="10" lg="10" class="m-auto">
         <b-form>
           <b-form-group
@@ -114,7 +114,7 @@
       </b-col>
     </b-card-body>
 
-    <b-card-body>
+    <b-card-body v-if="expressCheckoutCanBeEnabled">
       <b-col sm="12" md="10" lg="10" class="m-auto">
         <b-alert variant="info" show>
           <h4 class="alert-heading">
@@ -122,6 +122,19 @@
           </h4>
           <p>
             {{ $t('panel.express-checkout.alertContent') }}
+          </p>
+        </b-alert>
+      </b-col>
+    </b-card-body>
+
+    <b-card-body v-if="!expressCheckoutCanBeEnabled">
+      <b-col sm="12" md="10" lg="10" class="m-auto">
+        <b-alert variant="warning" show>
+          <h4 class="alert-heading">
+            {{ $t('banner.paypalIncompatibleClientAddress.title') }}
+          </h4>
+          <p>
+            {{ $t('banner.paypalIncompatibleClientAddress.content') }}
           </p>
         </b-alert>
       </b-col>
@@ -181,8 +194,10 @@
           );
         }
       },
-      shopIs17() {
-        return this.$store.getters.shopIs17;
+      expressCheckoutCanBeEnabled: {
+        get() {
+          return false;
+        }
       }
     },
     methods: {

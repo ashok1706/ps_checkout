@@ -55,6 +55,10 @@
       <RoundingBanner />
     </div>
 
+    <div class="container" v-if="true">
+      <PaypalIncompatibleClientAddress />
+    </div>
+
     <div class="container" v-if="isTestMode">
       <b-alert variant="warning" show>
         <p>{{ $t('general.testModeOn') }}</p>
@@ -100,6 +104,7 @@
 <script>
   import Menu from '@/components/menu/menu';
   import MenuItem from '@/components/menu/menu-item';
+  import PaypalIncompatibleClientAddress from '@/components/banner/paypal-incompatible-client-address';
   import PaypalValueProposition from '@/components/banner/paypal-value-proposition';
   import RoundingBanner from '@/components/block/rounding-banner';
 
@@ -109,6 +114,7 @@
       Menu,
       MenuItem,
       RoundingBanner,
+      PaypalIncompatibleClientAddress,
       PaypalValueProposition
     },
     data() {

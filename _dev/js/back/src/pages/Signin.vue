@@ -42,6 +42,7 @@
                 id="email-input"
                 v-model="email.value"
                 :state="email.state"
+                @keydown.native="onInputKeydown"
               />
             </b-form-group>
 
@@ -58,6 +59,7 @@
                 v-model="password.value"
                 type="password"
                 :state="password.state"
+                @keydown.native="onInputKeydown"
               />
             </b-form-group>
 
@@ -150,6 +152,11 @@
       }
     },
     methods: {
+      onInputKeydown(event) {
+        if (event.which === 13) {
+          this.logIn();
+        }
+      },
       logIn() {
         this.$store
           .dispatch({
